@@ -1,2 +1,2 @@
 # coding_challenge
-Various programming exercises
+Various programming exercises and whatnot
