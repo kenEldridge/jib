@@ -2,7 +2,7 @@
 
 ## Data-Structures
  - Linked List
-   -- Implemented but untested...
+   - Implemented but untested...
  - Tree
  - Trie
  - Graph
