@@ -1,13 +1,23 @@
 # Data-Structures and Algorithms To Implement for Edification
 
 ## Data-Structures
- - Linked List
-   - Whiteboarded and kind of implemented, but untested
+ - LinkedList
+   - LinkedList(), insert(), remove(), iterable
+   - Unit tested but never really used
+   - Add some pretty printing (todo)
  - Tree
+   - n-ary super-class inherits from Graph (todo)
+   - Enforce tree non-cyclic constraints (todo)
+   - Binary sub-class (todo)
  - Trie
- - Graph
+ - GraphNode
+   - Directed
+   - GraphNode(), add, remove
+   - Bidirectional (todo)
+   - Make it iterable (todo)
  - Heap
  - Vector / ArrayList
+   - Use this collection in GraphNode (todo)
  - Hash table
  - Stack
  - Queue

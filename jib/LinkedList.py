@@ -1,5 +1,5 @@
 """
-    A simple linked list
+    Singly linked list
 """
 class LinkedList:
     def __init__(self, value=None, next= None):
