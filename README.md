@@ -5,3 +5,9 @@ Attack!
 ```
 docker kill nb; docker rm nb; docker run -p 8888:8888 --name nb -v "$(pwd)"/notebooks:/home/jovyan nb
 ```
+
+## The JIB Lib
+from the jib root
+```
+python3 -m test.LinkedListTest
+```

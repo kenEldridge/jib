@@ -1,31 +1,74 @@
-
+"""
+    A simple linked list
+"""
 class LinkedList:
-    def __init(self, value=None, next = None):
+    def __init__(self, value=None, next_item= None):
+        """Create a node
+
+        Args:
+            value (Any): whatever you want, baby!
+            next (LinkedList): just the next node
+        """
         self.value = value
-        self.next = next
+        self.next_item = next_item
 
-    def insert(self, node, value=None):
-        if value is not None:
-            by_value = True
-        while self.next:
-            if by_value and self.value == value:
-                # The templess swap. Thanks, Python
-                self.next, node.next = node, self.next
-            else:
-                self.next = node
+    def insert(self, node, end=True):
+        """Insert a node either following a specific node (by_value) or at
+           the end of the list
 
-    def delete(self, node):
+        Args:
+            node (LinkedList): node to insert
+            end (boolean): insert at the of list, if false following self
+        """
+        if end:
+            while self.next_item:
+                self = self.next_item
+            self.next_item = node
+        else:
+            self.next_item, node.next_item = node, self.next_item
+
+    def remove(self, node):
+        """Remove specified node.  Assumes self is the head
+
+        Args:
+            node (LinkedList): node to remove
+
+        Returns:
+            head (LinkedList): return the head of the list
+        """
+        # If the head is removed, just cut it off and return next
+        if self is node:
+            return self.next_item
+        # Save entry point to return
         head = self
+        # Save your most recent node
         last = self
-        while self.next:
-            if self is node:
-                last.next = self.next
-                # If you are dropping the head, update our
-                # head, since that's what we're returning
-                if node is head:
-                    head = head.next
-            # Advance our last tracker
+        # Find the node to remove
+        while self.next_item and self is not node:
+            # Update your most recent node
             last = self
             # Step into the next node
-            self = self.next
+            self = self.next_item
+        if self is node:
+            # Jump self
+            last.next_item = self.next_item
         return head
+
+    def __iter__(self):
+        """Returns self
+
+        Returns:
+            node (LinkedList): self
+        """
+        return self
+
+    def __next__(self):
+        """Advances to next item
+
+        Returns:
+            node (LinkedList): next node
+        """
+        if self.next_item is None:
+            raise StopIteration
+        else:
+            return self.next_item
