@@ -44,6 +44,10 @@ class TestLinkedList(unittest.TestCase):
         head.insert(tail)
         head = head.remove(tail)
         self.assertEqual(head.next.next, None)
+        # Only node
+        head = LinkedList()
+        head = head.remove(head)
+        self.assertEqual(head, None)
 
     def test_iterable(self):
         head = LinkedList(value='one')
