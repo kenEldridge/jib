@@ -5,8 +5,9 @@
    - LinkedList(), insert(), remove(), iterable
    - Unit tested but never really used
    - Add some pretty printing (todo)
- - Tree
-   - n-ary super-class inherits from Graph (todo)
+ - TreeNode
+   - n-ary super-class inherits from Graph
+   - TreeNode(), add() **in progress**
    - Enforce tree non-cyclic constraints (todo)
    - Binary sub-class (todo)
  - Trie
