@@ -7,7 +7,7 @@ docker kill nb; docker rm nb; docker run -p 8888:8888 --name nb -v "$(pwd)"/note
 ```
 
 ## The JIB Lib
-from the jib root
+from the dream root
 ```
-python3 -m test.LinkedListTest
+python -m jib.test.LinkedListTest
 ```

@@ -17,7 +17,7 @@ class TestLinkedList(unittest.TestCase):
         tail = LinkedList()
         head.insert(node)
         head.insert(tail)
-        self.assertEqual(head.next_item.next_item, tail)
+        self.assertEqual(head.next.next, tail)
 
     def test_remove(self):
         # Remove head
@@ -35,7 +35,7 @@ class TestLinkedList(unittest.TestCase):
         head.insert(node)
         head.insert(tail)
         head = head.remove(node)
-        self.assertEqual(head.next_item, tail)
+        self.assertEqual(head.next, tail)
         # Remove tail
         head = LinkedList()
         node = LinkedList()
@@ -43,16 +43,16 @@ class TestLinkedList(unittest.TestCase):
         head.insert(node)
         head.insert(tail)
         head = head.remove(tail)
-        self.assertEqual(head.next_item.next_item, None)
+        self.assertEqual(head.next.next, None)
 
-    # def test_iterable(self):
-    #     head = LinkedList(value='one')
-    #     node = LinkedList(value='two')
-    #     tail = LinkedList(value='three')
-    #     head.insert(node)
-    #     head.insert(tail)
-    #     cat = ''.join([nd.value for nd in head])
-    #     self.assertEqual(cat, 'onetwothree')
+    def test_iterable(self):
+        head = LinkedList(value='one')
+        node = LinkedList(value='two')
+        tail = LinkedList(value='three')
+        head.insert(node)
+        head.insert(tail)
+        cat = ''.join([nd.value for nd in head])
+        self.assertEqual(cat, 'onetwothree')
 
 if __name__ == '__main__':
     unittest.main()
