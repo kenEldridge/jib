@@ -41,7 +41,7 @@ TreeNodes inherit from [GraphNode](#graphs).  They support arbitrary degree.  Tr
 | remove(node) | from GraphNode |
 
 ## Algorithms
- - Breadth-First Search
+ - Breadth-First Search: TreeNode.add() uses BFS
  - Depth-First Search
  - Binary Search
  - Merge Sort
