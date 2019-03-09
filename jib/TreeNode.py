@@ -1,11 +1,11 @@
-import warnings
 from jib.GraphNode import GraphNode
 from jib.exceptions import TreeCyclicException
 from collections import deque
-
 """
     n-ary tree: inherits from GraphNode. Enforces tree constraints
 """
+
+
 class TreeNode(GraphNode):
 
     def __init__(self, value=None, root=None):

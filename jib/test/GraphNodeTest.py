@@ -2,6 +2,7 @@ import unittest
 import warnings
 from jib.GraphNode import GraphNode
 
+
 class TestGraphNode(unittest.TestCase):
 
     def test_create(self):

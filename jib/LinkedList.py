@@ -1,8 +1,10 @@
 """
     Singly linked list
 """
+
+
 class LinkedList:
-    def __init__(self, value=None, next= None):
+    def __init__(self, value=None, next=None):
         """Create a node
 
         Args:

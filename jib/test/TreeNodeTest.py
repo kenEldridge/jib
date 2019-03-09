@@ -3,6 +3,7 @@ import warnings
 from jib.TreeNode import TreeNode
 from jib.exceptions import TreeCyclicException
 
+
 class TestTreeNode(unittest.TestCase):
 
     def test_create(self):

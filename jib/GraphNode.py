@@ -2,6 +2,8 @@ import warnings
 """
     n-ary graph
 """
+
+
 class GraphNode:
     def __init__(self, value=None, adjacent=None):
         """Create a graph node

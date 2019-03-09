@@ -1,6 +1,7 @@
 import unittest
 from jib.LinkedList import LinkedList
 
+
 class TestLinkedList(unittest.TestCase):
 
     def test_create(self):
@@ -57,6 +58,7 @@ class TestLinkedList(unittest.TestCase):
         head.insert(tail)
         cat = ''.join([nd.value for nd in head])
         self.assertEqual(cat, 'onetwothree')
+
 
 if __name__ == '__main__':
     unittest.main()

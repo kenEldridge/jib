@@ -16,6 +16,7 @@ class TreeCyclicException(TreeConstraintException):
     def __init__(self, root, node, fault_msg=None):
         self.fault_msg = fault_msg
         if not self.fault_msg:
-            self.fault_msg = "Non-cyclic constraint violated when attempting \
-                              to add '%s' to tree rooted at '%s'" % (node, root)
+            self.fault_msg = "Non-cyclic constraint violated when \
+                              attempting to add '%s' to tree rooted \
+                              at '%s'" % (node, root)
         super().__init__(obj=node, fault_msg=fault_msg)
