@@ -1,6 +1,7 @@
 import unittest
 import warnings
 from jib.TreeNode import TreeNode
+from jib.exceptions import TreeCyclicException
 
 class TestTreeNode(unittest.TestCase):
 
@@ -13,20 +14,35 @@ class TestTreeNode(unittest.TestCase):
         self.assertNotEqual(node1, node2)
 
     def test_add(self):
+        # Simple add
         node1 = TreeNode()
         node2 = TreeNode()
         node1.add(node2)
         self.assertIn(node2, node1.adjacent)
-
-    def test_add_warning(self):
+        # Cyclic add violation base-case
+        node1 = TreeNode()
+        try:
+            node1.add(node1)
+        except Exception as e:
+            # Ensure correct exception
+            self.assertIsInstance(e, TreeCyclicException)
+        # Cyclic add violation
         node1 = TreeNode()
         node2 = TreeNode()
+        node3 = TreeNode()
+        node4 = TreeNode()
+        node5 = TreeNode()
         node1.add(node2)
-        with warnings.catch_warnings(record=True) as w:
-            warnings.simplefilter("always")
-            node1.add(node2)
-            self.assertTrue(len(w) == 1)
-            self.assertIsInstance(w[0], warnings.WarningMessage)
+        node1.add(node3)
+        node2.add(node4)
+        node2.add(node5)
+        try:
+            node3.add(node5)
+            # fail if no exception
+            self.assertTrue(False)
+        except Exception as e:
+            # ensure excpetion is correct type
+            self.assertIsInstance(e, TreeCyclicException)
 
     def test_remove(self):
         node1 = TreeNode()
@@ -45,10 +61,6 @@ class TestTreeNode(unittest.TestCase):
             node1.remove(node2)
             self.assertTrue(len(w) == 1)
             self.assertIsInstance(w[0], warnings.WarningMessage)
-
-    def test_non_cyclic_create(self):
-        # Ensure non-cyclic behavior add instanciating with adjacent param
-        self.assertTrue(False)
 
 
 if __name__ == '__main__':
