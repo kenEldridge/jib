@@ -2,12 +2,12 @@
 
 ## Data-Structures
  - [LinkedList](#linkedlist)
- - [TreeNode](#trees)
-   - Binary sub-class (todo)
- - Trie
  - [GraphNode](#graphs)
    - Bidirectional (todo)
    - Make it iterable (todo)
+ - [TreeNode](#trees)
+   - Binary sub-class (todo)
+ - Trie
  - Heap
  - Vector / ArrayList
    - Use this collection in GraphNode (todo)
