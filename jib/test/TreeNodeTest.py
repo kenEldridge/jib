@@ -24,6 +24,8 @@ class TestTreeNode(unittest.TestCase):
         node1 = TreeNode()
         try:
             node1.add(node1)
+            # fail if no exception
+            self.assertTrue(False)
         except Exception as e:
             # Ensure correct exception
             self.assertIsInstance(e, TreeCyclicException)
@@ -33,12 +35,14 @@ class TestTreeNode(unittest.TestCase):
         node3 = TreeNode()
         node4 = TreeNode()
         node5 = TreeNode()
+        node6 = TreeNode()
         node1.add(node2)
         node1.add(node3)
         node2.add(node4)
         node2.add(node5)
+        node3.add(node6)
         try:
-            node3.add(node5)
+            node6.add(node5)
             # fail if no exception
             self.assertTrue(False)
         except Exception as e:

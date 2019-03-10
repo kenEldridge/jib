@@ -8,13 +8,13 @@ from collections import deque
 
 class TreeNode(GraphNode):
 
-    def __init__(self, value=None, root=None):
+    def __init__(self, value=None):
         # TreeNodes have zero children at creation
         super().__init__(value, adjacent=None)
         # They do not have parents either
         self.parent = None
 
-    def __find_root__(self):
+    def __findroot__(self):
         """Walk up the tree by parents
 
         Args: TreeNode
@@ -31,8 +31,8 @@ class TreeNode(GraphNode):
         else:
             return self
 
-    def __no_cycle__(self, node):
-        """Check tree rooted at root for the presence of node.
+    def __nocycle__(self, node):
+        """Check tree for the presence of node.
 
         Args:
             node: TreeNode
@@ -43,7 +43,7 @@ class TreeNode(GraphNode):
                 Raise exception if cycle found, otherwise return true
         """
         # Find root
-        root = self.__find_root__()
+        root = self.__findroot__()
         # BFS
         bfs_queue = deque()
         bfs_queue.append(root)
@@ -54,7 +54,7 @@ class TreeNode(GraphNode):
             if node in seen:
                 raise TreeCyclicException(root=root, node=node)
             current_node = bfs_queue.popleft()
-            for adj_node in current_node.adjacent:
+            for adj_node in current_node.adjacent.values():
                 seen.add(adj_node)
                 bfs_queue.append(adj_node)
         # Violation could be caused by last node in bfs_queue
@@ -70,6 +70,6 @@ class TreeNode(GraphNode):
                 add node to adjacency dict
         """
         # Enforce tree constraints
-        if self.__no_cycle__(child):
+        if self.__nocycle__(child):
             child.parent = self
             self.adjacent[child] = child
