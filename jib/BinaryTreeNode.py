@@ -39,10 +39,12 @@ class BinaryTreeNode(TreeNode):
             if value:
                 if isinstance(value, BinaryTreeNode):
                     value.parent = self
-                    adjacent_dict = TreeNode.__getattribute__(self, "adjacent")
+                    adjacent_dict = object.__getattribute__(self, "adjacent")
                     adjacent_dict[name] = value
                     object.__setattr__(self, "adjacent", adjacent_dict)
                 else:
                     raise ValueError("value must be type '%s'" % type(self))
+        # elif name == "adjacent":
+            # Only allow two
         else:
             object.__setattr__(self, name, value)

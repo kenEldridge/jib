@@ -1,6 +1,7 @@
+import warnings
+from collections import deque
 from jib.GraphNode import GraphNode
 from jib.exceptions import TreeCyclicException
-from collections import deque
 """
     n-ary tree: inherits from GraphNode. Enforces tree constraints
 """
@@ -13,6 +14,19 @@ class TreeNode(GraphNode):
         super().__init__(value, adjacent=None)
         # They do not have parents either
         self.parent = None
+
+    def __setattr__(self, name, value):
+        """Warn user if they are attempting to set attribute without using add
+
+           Args:
+            name (str): The attribute name
+            value (*): the value
+        """
+        if name == "adjacent":
+            warnings.warn("TreeNodes enforce tree constraints when adjacency \
+                           objects are added via self.add().  You should not \
+                           set self.adjacent explicetly.")
+        object.__setattr__(self, name, value)
 
     def __findroot__(self):
         """Walk up the tree by parents
@@ -72,4 +86,6 @@ class TreeNode(GraphNode):
         # Enforce tree constraints
         if self.__nocycle__(child):
             child.parent = self
-            self.adjacent[child] = child
+            adjacent_dict = object.__getattribute__(self, "adjacent")
+            adjacent_dict[child] = child
+            object.__setattr__(self, "adjacent", adjacent_dict)

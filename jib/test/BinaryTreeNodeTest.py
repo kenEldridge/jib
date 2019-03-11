@@ -51,6 +51,11 @@ class BinaryTestTreeNode(unittest.TestCase):
         node6.left = node7
         self.assertIs(node6.left, node7)
 
+    # def test_adjacency(self):
+    #     """Should support left/right not adjacent (from TreeNode/GraphNode)
+    #     """
+    #     import pdb; pdb.set_trace()
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,7 +15,8 @@ class GraphNode:
         if not adjacent:
             adjacent = {}
         self.value = value
-        self.adjacent = adjacent
+        # Normal setter here invoked sub-classes __setattr__
+        object.__setattr__(self, "adjacent", adjacent)
 
     def add(self, node):
         """Add node to self's adjacency dict

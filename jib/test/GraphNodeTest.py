@@ -1,4 +1,4 @@
-import unittest
+cimport unittest
 import warnings
 from jib.GraphNode import GraphNode
 

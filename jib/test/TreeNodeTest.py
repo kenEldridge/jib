@@ -67,6 +67,15 @@ class TestTreeNode(unittest.TestCase):
             self.assertTrue(len(w) == 1)
             self.assertIsInstance(w[0], warnings.WarningMessage)
 
+    def test_adjacency_warning(self):
+        node1 = TreeNode()
+        node2 = TreeNode()
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            node1.adjacent[node2] = node2
+            self.assertTrue(len(w) == 1)
+            self.assertIsInstance(w[0], warnings.WarningMessage)
+
 
 if __name__ == '__main__':
     unittest.main()
