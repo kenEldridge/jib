@@ -1,4 +1,4 @@
-cimport unittest
+import unittest
 import warnings
 from jib.GraphNode import GraphNode
 
@@ -17,7 +17,7 @@ class TestGraphNode(unittest.TestCase):
         node1 = GraphNode()
         node2 = GraphNode()
         node1.add(node2)
-        self.assertIn(node2, node1.adjacent)
+        self.assertIn(node2, node1._adjacent)
 
     def test_add_warning(self):
         node1 = GraphNode()
@@ -34,7 +34,7 @@ class TestGraphNode(unittest.TestCase):
         node2 = GraphNode()
         node1.add(node2)
         node1.remove(node2)
-        self.assertNotIn(node2, node1.adjacent)
+        self.assertNotIn(node2, node1._adjacent)
 
     def test_remove_warning(self):
         node1 = GraphNode()

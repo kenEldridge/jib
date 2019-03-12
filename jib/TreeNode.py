@@ -14,19 +14,7 @@ class TreeNode(GraphNode):
         super().__init__(value, adjacent=None)
         # They do not have parents either
         self.parent = None
-
-    def __setattr__(self, name, value):
-        """Warn user if they are attempting to set attribute without using add
-
-           Args:
-            name (str): The attribute name
-            value (*): the value
-        """
-        if name == "adjacent":
-            warnings.warn("TreeNodes enforce tree constraints when adjacency \
-                           objects are added via self.add().  You should not \
-                           set self.adjacent explicetly.")
-        object.__setattr__(self, name, value)
+        self.derp = [0]
 
     def __findroot__(self):
         """Walk up the tree by parents
@@ -68,7 +56,7 @@ class TreeNode(GraphNode):
             if node in seen:
                 raise TreeCyclicException(root=root, node=node)
             current_node = bfs_queue.popleft()
-            for adj_node in current_node.adjacent.values():
+            for adj_node in current_node._adjacent.values():
                 seen.add(adj_node)
                 bfs_queue.append(adj_node)
         # Violation could be caused by last node in bfs_queue
@@ -86,6 +74,6 @@ class TreeNode(GraphNode):
         # Enforce tree constraints
         if self.__nocycle__(child):
             child.parent = self
-            adjacent_dict = object.__getattribute__(self, "adjacent")
+            adjacent_dict = object.__getattribute__(self, "_adjacent")
             adjacent_dict[child] = child
-            object.__setattr__(self, "adjacent", adjacent_dict)
+            object.__setattr__(self, "_adjacent", adjacent_dict)
