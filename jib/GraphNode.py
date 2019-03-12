@@ -1,4 +1,5 @@
 import warnings
+from jib.Adjacent import Adjacent
 """
     n-ary graph
 """
@@ -13,10 +14,10 @@ class GraphNode:
             adjacent (dict): dict of GraphNodes
         """
         if not adjacent:
-            adjacent = {}
+            adjacent = Adjacent()
         self.value = value
         # Normal setter here invoked sub-classes __setattr__
-        object.__setattr__(self, "_adjacent", adjacent)
+        object.__setattr__(self, "adjacent", adjacent)
 
     def add(self, node):
         """Add node to self's adjacency dict
@@ -24,8 +25,8 @@ class GraphNode:
         Args:
             node (GraphNode): node add to adjacency dict
         """
-        if node not in self._adjacent:
-            self._adjacent[node] = node
+        if node not in self.adjacent:
+            self.adjacent[node] = node
         else:
             warnings.warn('%s already in %s\'s adjacency dict' % (node, self))
 
@@ -35,7 +36,7 @@ class GraphNode:
         Args:
             node (GraphNode): node to remove from adjacency dict
         """
-        if node in self._adjacent:
-            del self._adjacent[node]
+        if node in self.adjacent:
+            del self.adjacent[node]
         else:
             warnings.warn('%s not in %s\'s adjacency dict' % (node, self))
