@@ -19,7 +19,7 @@ class TestTreeNode(unittest.TestCase):
         node1 = TreeNode()
         node2 = TreeNode()
         node1.add(node2)
-        self.assertIn(node2, node1._adjacent)
+        self.assertIn(node2, node1.adjacent)
         # Cyclic add violation base-case
         node1 = TreeNode()
         try:
@@ -54,7 +54,7 @@ class TestTreeNode(unittest.TestCase):
         node2 = TreeNode()
         node1.add(node2)
         node1.remove(node2)
-        self.assertNotIn(node2, node1._adjacent)
+        self.assertNotIn(node2, node1.adjacent)
 
     def test_remove_warning(self):
         node1 = TreeNode()
@@ -64,6 +64,15 @@ class TestTreeNode(unittest.TestCase):
         with warnings.catch_warnings(record=True) as w:
             warnings.simplefilter("always")
             node1.remove(node2)
+            self.assertTrue(len(w) == 1)
+            self.assertIsInstance(w[0], warnings.WarningMessage)
+
+    def test_manual_add_warning(self):
+        node1 = TreeNode()
+        node2 = TreeNode()
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            node1.adjacent[node2] = node2
             self.assertTrue(len(w) == 1)
             self.assertIsInstance(w[0], warnings.WarningMessage)
 

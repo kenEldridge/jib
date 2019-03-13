@@ -56,7 +56,7 @@ class TreeNode(GraphNode):
             if node in seen:
                 raise TreeCyclicException(root=root, node=node)
             current_node = bfs_queue.popleft()
-            for adj_node in current_node._adjacent.values():
+            for adj_node in current_node.adjacent.values():
                 seen.add(adj_node)
                 bfs_queue.append(adj_node)
         # Violation could be caused by last node in bfs_queue
@@ -74,6 +74,8 @@ class TreeNode(GraphNode):
         # Enforce tree constraints
         if self.__nocycle__(child):
             child.parent = self
-            adjacent_dict = object.__getattribute__(self, "_adjacent")
-            adjacent_dict[child] = child
-            object.__setattr__(self, "_adjacent", adjacent_dict)
+            adjacent_dict = object.__getattribute__(self, "adjacent")
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                adjacent_dict[child] = child
+            object.__setattr__(self, "adjacent", adjacent_dict)

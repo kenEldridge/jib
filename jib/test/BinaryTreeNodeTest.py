@@ -1,4 +1,5 @@
 import unittest
+import warnings
 from jib.BinaryTreeNode import BinaryTreeNode
 from jib.exceptions import TreeCyclicException
 
@@ -51,10 +52,14 @@ class BinaryTestTreeNode(unittest.TestCase):
         node6.left = node7
         self.assertIs(node6.left, node7)
 
-    # def test_adjacency(self):
-    #     """Should support left/right not adjacent (from TreeNode/GraphNode)
-    #     """
-    #     import pdb; pdb.set_trace()
+    def test_manual_add_warning(self):
+        node1 = BinaryTreeNode()
+        node2 = BinaryTreeNode()
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            node1.adjacent[node2] = node2
+            self.assertTrue(len(w) == 1)
+            self.assertIsInstance(w[0], warnings.WarningMessage)
 
 
 if __name__ == '__main__':

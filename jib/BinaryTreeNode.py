@@ -1,3 +1,4 @@
+import warnings
 from jib.TreeNode import TreeNode
 """
     binary tree: inherits from TreeNode
@@ -20,9 +21,9 @@ class BinaryTreeNode(TreeNode):
             name (str): The attribute name
         """
         if name == "left":
-            object.__setattr__(self, name, self._adjacent[name])
+            object.__setattr__(self, name, self.adjacent[name])
         elif name == "right":
-            object.__setattr__(self, name, self._adjacent[name])
+            object.__setattr__(self, name, self.adjacent[name])
         return object.__getattribute__(self, name)
 
     def __setattr__(self, name, value):
@@ -39,12 +40,14 @@ class BinaryTreeNode(TreeNode):
             if value:
                 if isinstance(value, BinaryTreeNode):
                     value.parent = self
-                    adjacent_dict = object.__getattribute__(self, "_adjacent")
-                    adjacent_dict[name] = value
-                    object.__setattr__(self, "_adjacent", adjacent_dict)
+                    adjacent_dict = object.__getattribute__(self, "adjacent")
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        adjacent_dict[name] = value
+                    object.__setattr__(self, "adjacent", adjacent_dict)
                 else:
                     raise ValueError("value must be type '%s'" % type(self))
-        # elif name == "_adjacent":
+        # elif name == "adjacent":
             # Only allow two
         else:
             object.__setattr__(self, name, value)

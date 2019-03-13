@@ -26,12 +26,14 @@ class GraphNode:
             node (GraphNode): node add to adjacency dict
         """
         if node not in self.adjacent:
-            self.adjacent[node] = node
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                self.adjacent[node] = node
         else:
             warnings.warn('%s already in %s\'s adjacency dict' % (node, self))
 
     def remove(self, node):
-        """Remove node from self's adjacency dist
+        """Remove node from self's adjacency dict
 
         Args:
             node (GraphNode): node to remove from adjacency dict
