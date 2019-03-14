@@ -1,7 +1,16 @@
+#!/usr/bin/env python
+"""Test the TreeNode class"""
+
 import unittest
 import warnings
 from jib.TreeNode import TreeNode
 from jib.exceptions import TreeCyclicException
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class TestTreeNode(unittest.TestCase):

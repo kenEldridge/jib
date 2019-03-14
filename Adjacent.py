@@ -1,4 +1,20 @@
+#!/usr/bin/env python
+"""Provides dict with a warning when __setitem__ is called, encourages use of
+   add methods.
+
+   Adjacent object allows classes to address Adjacent attributes as if
+   they are dictionaries.  They support index get/set, del, iteration, and warn
+   a user if they are being used incorrectly.
+"""
+
 import warnings
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
+
 
 class Adjacent:
     """docstring for ."""

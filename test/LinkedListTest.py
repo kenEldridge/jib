@@ -1,5 +1,14 @@
+#!/usr/bin/env python
+"""Test the LinkedList class"""
+
 import unittest
 from jib.LinkedList import LinkedList
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class TestLinkedList(unittest.TestCase):

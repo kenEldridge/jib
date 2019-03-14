@@ -1,8 +1,14 @@
+#!/usr/bin/env python
+"""BinaryTreeNode objects: inherits from TreeNode"""
+
 import warnings
 from jib.TreeNode import TreeNode
-"""
-    binary tree: inherits from TreeNode
-"""
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class BinaryTreeNode(TreeNode):
