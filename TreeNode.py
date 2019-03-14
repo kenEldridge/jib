@@ -1,10 +1,16 @@
+#!/usr/bin/env python
+"""TreeNode objects: inherits from GraphNode. Enforces tree constraints"""
+
 import warnings
 from collections import deque
 from jib.GraphNode import GraphNode
 from jib.exceptions import TreeCyclicException
-"""
-    n-ary tree: inherits from GraphNode. Enforces tree constraints
-"""
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class TreeNode(GraphNode):

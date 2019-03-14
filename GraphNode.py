@@ -1,8 +1,14 @@
+#!/usr/bin/env python
+"""n-ary graph"""
+
 import warnings
 from jib.Adjacent import Adjacent
-"""
-    n-ary graph
-"""
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class GraphNode:

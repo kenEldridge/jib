@@ -1,6 +1,15 @@
+#!/usr/bin/env python
+"""Test the GraphNode class"""
+
 import unittest
 import warnings
 from jib.GraphNode import GraphNode
+
+__author__ = "Ken Eldridge"
+__copyright__ = "Copyright 2019, Ken Eldridge"
+__license__ = "GPL"
+__version__ = "0.0.0"
+__status__ = "Development"
 
 
 class TestGraphNode(unittest.TestCase):
