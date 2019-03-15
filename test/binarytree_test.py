@@ -3,7 +3,7 @@
 
 import unittest
 import warnings
-from jib.BinaryTreeNode import BinaryTreeNode
+from jib.binarytree import BinaryTreeNode
 from jib.exceptions import TreeCyclicException
 
 __author__ = "Ken Eldridge"

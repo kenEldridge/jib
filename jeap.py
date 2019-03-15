@@ -2,7 +2,7 @@
 """jeap objects: (jib) heap implemented via inheritance from BinaryTreeNode"""
 
 import warnings
-from jib.BinaryTreeNode import BinaryTreeNode
+from jib.binarytree import BinaryTreeNode
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"
