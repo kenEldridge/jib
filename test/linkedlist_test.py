@@ -2,7 +2,7 @@
 """Test the LinkedList class"""
 
 import unittest
-from jib.LinkedList import LinkedList
+from jib.linkedlist import LinkedList
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"

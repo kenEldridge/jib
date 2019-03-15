@@ -2,7 +2,7 @@
 """BinaryTreeNode objects: inherits from TreeNode"""
 
 import warnings
-from jib.TreeNode import TreeNode
+from jib.tree import TreeNode
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"

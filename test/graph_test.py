@@ -3,7 +3,7 @@
 
 import unittest
 import warnings
-from jib.GraphNode import GraphNode
+from jib.graph import GraphNode
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"

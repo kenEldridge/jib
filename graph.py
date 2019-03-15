@@ -2,7 +2,7 @@
 """n-ary graph"""
 
 import warnings
-from jib.Adjacent import Adjacent
+from jib.adjacent import Adjacent
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"

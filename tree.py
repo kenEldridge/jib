@@ -3,7 +3,7 @@
 
 import warnings
 from collections import deque
-from jib.GraphNode import GraphNode
+from jib.graph import GraphNode
 from jib.exceptions import TreeCyclicException
 
 __author__ = "Ken Eldridge"
