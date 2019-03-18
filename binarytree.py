@@ -3,6 +3,7 @@
 
 import warnings
 from jib.tree import TreeNode
+from jib.exceptions import TreeAddException
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"
@@ -26,10 +27,11 @@ class BinaryTreeNode(TreeNode):
            Args:
             name (str): The attribute name
         """
-        if name == "left":
-            object.__setattr__(self, name, self.adjacent[name])
-        elif name == "right":
-            object.__setattr__(self, name, self.adjacent[name])
+        if name == "left" or name == "right":
+            if name in self.adjacent:
+                object.__setattr__(self, name, self.adjacent[name])
+            else:
+                object.__setattr__(self, name, None)
         return object.__getattribute__(self, name)
 
     def __setattr__(self, name, value):
@@ -57,3 +59,18 @@ class BinaryTreeNode(TreeNode):
             # Only allow two
         else:
             object.__setattr__(self, name, value)
+
+    def add(self, child):
+        """Override parent add().  Allow setting of first two children.  Return
+           exception is two children already present.
+
+        Args:
+            node: BinaryTreeNode
+                add node as left or right
+        """
+        if self.left is None:
+            self.__setattr__("left", child)
+        elif self.right is None:
+            self.__setattr__("right", child)
+        else:
+            raise TreeAddException(self)

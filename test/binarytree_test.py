@@ -4,7 +4,9 @@
 import unittest
 import warnings
 from jib.binarytree import BinaryTreeNode
-from jib.exceptions import TreeCyclicException
+from jib.exceptions import (TreeCyclicException,
+                            TreeAddException
+                            )
 
 __author__ = "Ken Eldridge"
 __copyright__ = "Copyright 2019, Ken Eldridge"
@@ -70,6 +72,31 @@ class BinaryTestTreeNode(unittest.TestCase):
             self.assertTrue(len(w) == 1)
             self.assertIsInstance(w[0], warnings.WarningMessage)
 
+    def test_using_add(self):
+        node1 = BinaryTreeNode()
+        node2 = BinaryTreeNode()
+        node3 = BinaryTreeNode()
+        node4 = BinaryTreeNode()
+        node1.add(node2)
+        node1.add(node3)
+        self.assertTrue(node1.left is node2)
+        self.assertTrue(node1.right is node3)
+        try:
+            # Add should only work twice
+            node1.add(node4)
+            # fail if no exception
+            self.assertTrue(False)
+        except TreeAddException as e:
+            self.assertIsInstance(e, TreeAddException)
+        try:
+            # Tree cycle violation
+            node2.add(node4)
+            node4.add(node3)
+            # fail if no exception
+            self.assertTrue(False)
+        except Exception as e:
+            # Ensure correct exception
+            self.assertIsInstance(e, TreeCyclicException)
 
 if __name__ == '__main__':
     unittest.main()

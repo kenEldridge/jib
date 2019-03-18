@@ -29,3 +29,12 @@ class TreeCyclicException(TreeConstraintException):
                               attempting to add '%s' to tree rooted \
                               at '%s'" % (node, root)
         super().__init__(obj=node, fault_msg=fault_msg)
+
+
+class TreeAddException(TreeConstraintException):
+    """When children cannot be added"""
+    def __init__(self, node, fault_msg=None):
+        self.fault_msg = fault_msg
+        if not self.fault_msg:
+            self.fault_msg = "Cannot add additional child nodes"
+        super().__init__(obj=node, fault_msg=fault_msg)
