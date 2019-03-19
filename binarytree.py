@@ -14,7 +14,7 @@ __status__ = "Development"
 
 class BinaryTreeNode(TreeNode):
 
-    def __init__(self, value=None, root=None):
+    def __init__(self, value=None):
         # BinaryTreeNodes have zero children at creation
         super().__init__(value)
         # init left, right

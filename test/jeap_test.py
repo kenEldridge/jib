@@ -16,18 +16,12 @@ class TestJeap(unittest.TestCase):
     def test_create(self):
         self.assertIsInstance(Jeap(), Jeap)
 
-    def test_tree_features(self):
-        node1 = Jeap()
-        node2 = Jeap()
-        node3 = Jeap()
-        node4 = Jeap()
-        node5 = Jeap()
-        node6 = Jeap()
-        node7 = Jeap()
-        node1.left = node2
-        node1.right = node3
-        node2.left = node4
-        node2.right = derp
+    def test_insert(self):
+        # Default to max-heap
+        jeap = Jeap()
+        jeap.insert(10)
+        jeap.insert(20)
+        self.assertTrue(jeap.find() == 20)
 
 
 if __name__ == '__main__':
