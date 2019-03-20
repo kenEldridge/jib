@@ -29,42 +29,47 @@ class Jeap():
     def delete():
         return warnings.warn("Not Implemented")
 
-    def _swap_(self, new_node, old_node):
-        """Replace new_node with old_node
+    def _swap(node1, node2):
+        node1.value, node2.value = node2.value, node1.value
+        return node1.value, node2.value
+
+    def _replace_(self, node_current, node_insert):
+        """Search tree in BFS fashion checking to see if item at node_current
+           should be replaced.
 
         Args:
-         new_node (BinaryTreeNode): Node to insert
-         old_node (BinaryTreeNode): Node to remove
-        """
-        old_node.value, new_node.value = new_node.value, old_node.value
-
-    def _replace_(self, item, node):
-        """Search tree in BFS fashion checking to see if item at node should be
-           replaced.
-
-        Args:
-         node_insert (BinaryTreeNode): item to insert
          node_current (BinaryTreeNode): the position in self._tree
+         node_insert (BinaryTreeNode): item to insert
 
         Returns:
          replaced_item: the item that was replaced
          node: the current node from self._tree
         """
         queue = deque()
-        queue.append(node)
+        queue.append(node_current)
         while queue:
-            node = queue.popleft()
-            if item.value < node_current.value:
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
+            node_current = queue.popleft()
+            if node_insert.value < node_current.value:
+                # insert if space available, otherwise keep searching
+                if not node_current.left:
+                    node_current.left = node_insert
+                    return None, node_insert
+                else:
+                    queue.append(node_current.left)
+                if not node_current.right:
+                    node_current.right = node_insert
+                    return None, node_insert
+                else:
+                    queue.append(node_current.right)
             else:
-                # swap values inplace, item will have the replace value
-                self._swap_(item, node)
-                return item, node
-        # if we do not replace, signal by returning None
-        return None, node
+                # Swap values because it's simpler than replacing in tree
+                node_insert.value, node_current.value = node_current.value, node_insert.value
+                return node_insert, node_current
+        # if no value needs replaced, we just need to add node_insert as a child
+        if not node_current.left:
+            # Swap values because it's simpler than replacing in tree
+            node_insert.value, node_current.value = node_current.value, node_insert.value
+        return None, node_current
 
 
     def insert(self, item):
@@ -73,12 +78,16 @@ class Jeap():
         Args:
          item: item to insert
         """
-        item_node = BinaryTreeNode(value=item)
+        # Is this the first insert?
+        if self._tree.value is None:
+            self._tree.value = item
+            item_node = self._tree
+        else:
+            item_node = BinaryTreeNode(value=item)
         replaced, node_current = self._replace_(item_node, self._tree)
+        import pdb; pdb.set_trace()
         while replaced:
             replaced, node_current = self._replace_(replaced, node_current)
-        if not node.left:
-            node.left = re
 
         # this is getting sloppy.  take a step back tomorrow and think this through
         # before writing more code
