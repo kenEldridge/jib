@@ -23,16 +23,30 @@ class TestJeap(unittest.TestCase):
         jeap.insert(10)
         jeap.insert(20)
         self.assertTrue(True)
-        # self.assertTrue(jeap.find() == 20)
 
-    # def test__replace(self):
-    #     jeap = Jeap()
-    #     # manually set _tree since we are testing internals
-    #     jeap._tree.value = 100
-    #     node_insert = BinaryTreeNode(value=60)
-    #     replaced_item, node = jeap._replace_(jeap._tree, node_insert)
-    #     self.assertTrue(replaced_item is None)
-    #     self.assertEqual(node.value, 60)
+    def test__replace(self):
+        jeap = Jeap()
+        # manually set _tree since we are testing internals
+        jeap._tree.value = 100
+        node_insert = BinaryTreeNode(value=60)
+        current_node, replaced = jeap._replace_(jeap._tree, node_insert)
+        self.assertEqual(current_node.value, 60)
+        self.assertTrue(replaced is None)
+
+    def test__insert(self):
+        jeap = Jeap()
+        jeap.insert(10)
+        jeap.insert(20)
+        jeap.insert(30)
+        jeap.insert(40)
+        jeap.insert(50)
+        jeap.insert(60)
+        node = jeap._tree
+        self.assertTrue(node.value > node.left.value)
+        self.assertTrue(node.value > node.right.value)
+        node = jeap._tree.left
+        self.assertTrue(node.value > node.left.value)
+        self.assertTrue(node.value > node.right.value)
 
 
 if __name__ == '__main__':

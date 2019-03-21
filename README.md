@@ -48,7 +48,7 @@ BinaryTreeNodes inherit from [TreeNode](#trees).  They support adding children v
 | remove(child) | from GraphNode |
 
 ### Heaps
-Heaps are commonly implemented as arrays.  However, I've been doing the inheritace thing with GraphNodes so I'm tempted to continue that strategy and implement Heaps as a sub-class of BinaryTreeNode.  Before I do that, let's make a quick space/time trade-off comparison for a max-heap.
+Heaps are commonly implemented as arrays.  However, I just built a BinaryTreeNode class so I'm tempted to use it to implement Heaps.  Before I do that, let's make a quick space/time trade-off comparison for a max-heap.
 
 #### Space
 | | Space Complexity |
@@ -56,7 +56,7 @@ Heaps are commonly implemented as arrays.  However, I've been doing the inherita
 | Array Implementation Space | O(n) |
 | Node Implementation Time | O(n) |
 
-This is one of those cases where the array implementation is clearly smaller but it has the same complexity as it's node based counterpart. 
+This is one of those cases where the array implementation is clearly smaller but it has the same complexity as it's node based counterpart.
 
 #### Time
 | | Array Implementation | Node Implementation |
@@ -69,6 +69,9 @@ This is one of those cases where the array implementation is clearly smaller but
 
 #### Array vs. Node Conclusion
 The time completxity will be the same for the array and node implementations.  The space complexity is of the same magnitude, although admittedly the array version will have a smaller practicle footprint.  Since I am inclided to use the node version and the two are so similar in space and time, I am going to go with the node version.
+
+#### WIP Follow-up
+Tree balance is an issue.  Inferring the tree structure from an array obviates imbalance issues.  Since I chose to use the BinaryTreeNode it just means I need to do a little more work when inserting to ensure we do not have a biased tree.
 
 ## Algorithms
  - Breadth-First Search: TreeNode.add() uses BFS

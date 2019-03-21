@@ -42,8 +42,8 @@ class Jeap():
          node_insert (BinaryTreeNode): item to insert
 
         Returns:
-         replaced_item: the item that was replaced
-         node: the current node from self._tree
+         node_current: the current node from self._tree
+         node_removed: the item that was removed
         """
         queue = deque()
         queue.append(node_current)
@@ -53,23 +53,18 @@ class Jeap():
                 # insert if space available, otherwise keep searching
                 if not node_current.left:
                     node_current.left = node_insert
-                    return None, node_insert
+                    return node_insert, None
                 else:
                     queue.append(node_current.left)
                 if not node_current.right:
                     node_current.right = node_insert
-                    return None, node_insert
+                    return node_insert, None
                 else:
                     queue.append(node_current.right)
             else:
                 # Swap values because it's simpler than replacing in tree
-                node_insert.value, node_current.value = node_current.value, node_insert.value
-                return node_insert, node_current
-        # if no value needs replaced, we just need to add node_insert as a child
-        if not node_current.left:
-            # Swap values because it's simpler than replacing in tree
-            node_insert.value, node_current.value = node_current.value, node_insert.value
-        return None, node_current
+                node_current.value, node_insert.value = node_insert.value, node_current.value
+                return node_current, node_insert
 
 
     def insert(self, item):
@@ -78,16 +73,18 @@ class Jeap():
         Args:
          item: item to insert
         """
+        removed = None
         # Is this the first insert?
         if self._tree.value is None:
             self._tree.value = item
             item_node = self._tree
         else:
             item_node = BinaryTreeNode(value=item)
-        replaced, node_current = self._replace_(item_node, self._tree)
-        import pdb; pdb.set_trace()
-        while replaced:
-            replaced, node_current = self._replace_(replaced, node_current)
+            node_current, removed = self._replace_(node_current=self._tree,
+                                                    node_insert=item_node)
+        # import pdb; pdb.set_trace()
+        while removed:
+            node_current, removed = self._replace_(node_current, removed)
 
         # this is getting sloppy.  take a step back tomorrow and think this through
         # before writing more code
