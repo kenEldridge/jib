@@ -23,15 +23,35 @@ class Jeap():
         else:
             self.max = False
 
-    def find():
-        return warnings.warn("Not Implemented")
+    def find(self):
+        """Returns value at root"""
+        return self._tree.value
 
-    def delete():
+    def delete(self, value):
+        """Delete specified value
+
+        Args:
+          value: the value to remove
+        """
+        queue = deque()
+        queue.append(self)
+        while queue:
+            node_current = queue.popleft()
+            if value == node_current._tree.value:
+                # promote left or right?
+                
+
         return warnings.warn("Not Implemented")
 
     def _swap(node1, node2):
         node1.value, node2.value = node2.value, node1.value
         return node1.value, node2.value
+
+    def _compare(self, value1, value2):
+        if self.max:
+            return value1 < value2
+        else:
+            return value1 > value2
 
     def _replace_(self, node_current, node_insert):
         """Search tree in BFS fashion checking to see if item at node_current
@@ -49,7 +69,7 @@ class Jeap():
         queue.append(node_current)
         while queue:
             node_current = queue.popleft()
-            if node_insert.value < node_current.value:
+            if self._compare(node_insert.value, node_current.value):
                 # insert if space available, otherwise keep searching
                 if not node_current.left:
                     node_current.left = node_insert
@@ -74,7 +94,7 @@ class Jeap():
          item: item to insert
         """
         removed = None
-        # Is this the first insert?
+        # The first inset is special
         if self._tree.value is None:
             self._tree.value = item
             item_node = self._tree
@@ -82,12 +102,9 @@ class Jeap():
             item_node = BinaryTreeNode(value=item)
             node_current, removed = self._replace_(node_current=self._tree,
                                                     node_insert=item_node)
-        # import pdb; pdb.set_trace()
         while removed:
             node_current, removed = self._replace_(node_current, removed)
 
-        # this is getting sloppy.  take a step back tomorrow and think this through
-        # before writing more code
 
     def merge():
         return warnings.warn("Not Implemented")

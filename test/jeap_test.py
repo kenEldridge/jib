@@ -49,5 +49,22 @@ class TestJeap(unittest.TestCase):
         self.assertTrue(node.value > node.right.value)
 
 
+    def test__min(self):
+        jeap = Jeap(max=False)
+        jeap.insert(60)
+        jeap.insert(20)
+        jeap.insert(50)
+        jeap.insert(40)
+        jeap.insert(30)
+        jeap.insert(10)
+        node = jeap._tree
+        self.assertTrue(node.value < node.left.value)
+        self.assertTrue(node.value < node.right.value)
+        node = jeap._tree.left
+        self.assertTrue(node.value < node.left.value)
+        self.assertTrue(node.value < node.right.value)
+        self.assertTrue(jeap.find() == 10)
+
+
 if __name__ == '__main__':
     unittest.main()
